@@ -6,18 +6,16 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:22 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/26 15:48:28 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/09/29 17:02:44 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
+# include "push_swap.h"
 
-typedef struct s_stack
-{
-    int             value;
-    struct s_stack  *next;
-} t_stack;
+
+
 
 t_stack *create_node(int value)
 {

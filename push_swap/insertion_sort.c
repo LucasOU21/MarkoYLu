@@ -21,6 +21,7 @@ int	main (void)
 {
 	int arr[] = {10, 20, 2, 11, 15, 17, 6};
 	int N = sizeof(arr) / sizeof(arr[0]);
+	
 
 	printf("====== UNSORTED ARRAY ======\n");
 

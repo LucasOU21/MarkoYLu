@@ -1,3 +1,5 @@
 09.28 
 I found this video usefull for this insertion sort 
 https://www.geeksforgeeks.org/dsa/insertion-sort-algorithm/ 
+
+we need to understand how to connect operations with algorithms.

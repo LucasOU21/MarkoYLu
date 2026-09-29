@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   medium_strat.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:10 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/25 17:44:11 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/09/28 22:50:42 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+729158364 ----- 3 Chunks -> 
+
+ROW A           ROW B
+------         --------
