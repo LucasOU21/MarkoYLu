@@ -17,6 +17,7 @@ void insertion_sort(int arr[], int N)
 	}
 }
 
+/*
 int	main (void)
 {
 	int arr[] = {10, 20, 2, 11, 15, 17, 6};
@@ -39,4 +40,4 @@ printf("\n");
 		printf("%d ", arr[i]);
 	}
 	return (0);
-}
+}*/

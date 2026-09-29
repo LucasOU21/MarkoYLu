@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:22 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:02:44 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/09/29 17:25:52 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void push(t_stack **a, t_stack **b)
 
 }
 
-
+/*
 int main(void)
 {
     // ručno pravimo stack 3 -> 2 -> 1, bez argumenata, da bude jednostavno
@@ -100,4 +100,4 @@ int main(void)
 	print_stack(b);
 
     return (0);
-}
+}*/

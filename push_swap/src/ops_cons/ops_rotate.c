@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:05:05 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/09/29 17:29:33 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,7 @@ void	rr(t_stack **a, t_stack **b)
 	write(1, "rr\n", 3);
 }
 
+/*
 int main(void)
 {
     // ručno pravimo stack 3 -> 2 -> 1, bez argumenata, da bude jednostavno
@@ -101,7 +102,7 @@ int main(void)
 	b->next->next = create_node(1);
 	
     a->next = create_node(2);
-    a->next->next = create_node(1);
+    a->next->next = create_node(1sb);
 
     printf("--- Before rotate ---\n");
     print_stack(a);
@@ -119,4 +120,4 @@ int main(void)
 	//print_stack(b);
 
     return (0);
-}
+}*/

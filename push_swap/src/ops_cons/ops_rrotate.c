@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:18 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/28 09:45:33 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/09/29 17:22:52 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ I dont know who the did it becuase theu did it differently
 
 */
 
+/*
 int main(void)
 {
     // ručno pravimo stack 3 -> 2 -> 1, bez argumenata, da bude jednostavno
@@ -131,4 +132,4 @@ int main(void)
 	//print_stack(b);
 
     return (0);
-}
+}*/

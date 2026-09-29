@@ -6,12 +6,11 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:24 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:02:05 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/09/29 17:39:04 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "push_swap.h"
-
+#include "push_swap.h"
 
 void sa(t_stack **a)
 {
