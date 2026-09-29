@@ -12,10 +12,15 @@ void selection_sort(int arr[], int N)
 			{
 				min_idx = j;
 			}
-			int tmp = arr[i];
-			arr[i] = arr[min_idx];
-			arr[min_idx] = tmp;
+		
 		}
+		//this was mistake, i left it inside of the loop, 
+		// so i was swapping so many times inside jloop 
+		// 
+		int tmp = arr[i];
+			arr[i] = arr[min_idx];
+			arr[min_idx] = tmp;	
+		
 	}
 }
 
@@ -39,5 +44,6 @@ printf("\n");
 	{
 		printf("%d ", arr[i]);
 	}
+	printf("\n");
 	return (0);
 }
