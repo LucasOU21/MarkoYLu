@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/01 11:17:02 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/01 13:19:52 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,29 +70,24 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	main(int argc, char **argv)
 {
+	int i = 1;
 	char flag[] = "--bench";
 	printf("====== Checking ATOI ======\n");
 
-	if (argc > 1)
+	while (i < argc)
 {
-	if (ft_strncmp(argv[2], flag, 7) == 0)
+	if (ft_strncmp(argv[i], "--bench", 8) == 0)
 	{
-		printf("Your flag is: %s\n", argv[2]);
+		printf("Your flag on position %d is: %s\n", i, argv[i]);
 	}
-	else{
-		printf("Your flag is not: %s, it written wrong: %s\n", flag,  argv[2]);
-	}
-	if (ft_atoi(argv[1]) != 0)
+	else if(ft_atoi(argv[i]) != 0)
 	{
-        printf("After atoi output is: %d\n", ft_atoi(argv[1]));
-        return (0);
-	} else
-		printf("After atoi input is regected : %d\n", ft_atoi(argv[1]));
-    } else
-	{
-		printf("MISTAKE: missing input number:\n");
-		return (1);
-	}
+        printf("After atoi input %d is ok: %d\n", i, ft_atoi(argv[i]));
+	} else if (ft_atoi(argv[i]) == 0)
+		printf("After atoi input nb:%d is regected : %d\n", i, ft_atoi(argv[i]));
+
+	i++;
+    }
 	
 	
 	/*
