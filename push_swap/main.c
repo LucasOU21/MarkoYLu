@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/01 11:12:27 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/01 11:17:02 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,6 @@ int	main(int argc, char **argv)
         return (0);
 	} else
 		printf("After atoi input is regected : %d\n", ft_atoi(argv[1]));
-	
     } else
 	{
 		printf("MISTAKE: missing input number:\n");
