@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/01 13:57:34 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/01 14:10:14 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,20 @@ void ft_nodeadd_back(t_node **lst, t_node *new_node)
 
 void print_stack(t_node *stack, char *stack_name)
 {
-    printf("--- Stack %s ---\n", stack_name);
+    printf("========== STACK %s ==========\n", stack_name);
     if (!stack)
     {
         printf("(empty)\n\n");
         return ;
     }
+	int i = 0;
     while (stack)
     {
-        printf("%d\n", stack->value);
+        printf("On position %d in stack A, is number: %d\n", i, stack->value);
         stack = stack->next;
+		i++;
     }
-    printf("---------------\n\n");
+    printf("========== END OF STACK A ==========\n\n");
 }
 
 int	ft_atoi(const char *nptr)
@@ -168,7 +170,7 @@ int	main(int argc, char **argv)
 	i++;
     }
 	if (flag_count == 1)
-        printf("Bench mode activated!\n");
+        printf("Bench mode activated!\n\n");
 	
 	print_stack(stack_a, "A");
 	
