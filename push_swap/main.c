@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/01 13:19:52 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/01 13:38:43 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,23 +71,33 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 int	main(int argc, char **argv)
 {
 	int i = 1;
-	char flag[] = "--bench";
+	int flag_count = 0;
+	//char flag[] = "--bench";
 	printf("====== Checking ATOI ======\n");
 
 	while (i < argc)
 {
 	if (ft_strncmp(argv[i], "--bench", 8) == 0)
 	{
+		flag_count++;
+		if (flag_count > 1)
+		{
+			printf("Error: Flag '--bench' is written more than once!\n");
+			return (1);
+		}
 		printf("Your flag on position %d is: %s\n", i, argv[i]);
+		
 	}
 	else if(ft_atoi(argv[i]) != 0)
 	{
         printf("After atoi input %d is ok: %d\n", i, ft_atoi(argv[i]));
 	} else if (ft_atoi(argv[i]) == 0)
-		printf("After atoi input nb:%d is regected : %d\n", i, ft_atoi(argv[i]));
+		printf("After atoi input nb:%d is rejected : %d\n", i, ft_atoi(argv[i]));
 
 	i++;
     }
+	if (flag_count == 1)
+        printf("Bench mode activated!\n");
 	
 	
 	/*
