@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/01 10:48:28 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/01 11:12:27 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,36 @@ int	ft_atoi(const char *nptr)
 	
 	return (result * sign);
 }
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < n)
+	{
+		if (s1[i] != s2[i])
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		if (s1[i] == '\0')
+			return (0);
+		i++;
+	}
+	return (0);
+}
 
 int	main(int argc, char **argv)
 {
+	char flag[] = "--bench";
 	printf("====== Checking ATOI ======\n");
 
 	if (argc > 1)
 {
+	if (ft_strncmp(argv[2], flag, 7) == 0)
+	{
+		printf("Your flag is: %s\n", argv[2]);
+	}
+	else{
+		printf("Your flag is not: %s, it written wrong: %s\n", flag,  argv[2]);
+	}
 	if (ft_atoi(argv[1]) != 0)
 	{
         printf("After atoi output is: %d\n", ft_atoi(argv[1]));
