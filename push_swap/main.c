@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/01 13:38:43 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/01 13:57:34 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,66 @@
 
 #include <stdio.h>
 #include <limits.h>
+#include <stdlib.h>
 
 //int operation_count = 0;
+
+typedef struct s_node {
+  int value;           // the number from argv
+  struct s_node *next; // the node below it, NULL for the bottom
+} t_node;
+
+
+t_node *ft_node_new(int value)
+{
+	t_node	*new_node;
+
+	new_node = (t_node *)malloc(sizeof(t_node));
+	if (!new_node)
+		return (NULL);
+	new_node->value = value;
+	new_node->next = NULL;
+	return (new_node);
+}
+t_node *ft_nodelast(t_node *lst)
+{
+    if (!lst)
+        return (NULL);
+    while (lst->next)
+        lst = lst->next;
+    return (lst);
+}
+
+void ft_nodeadd_back(t_node **lst, t_node *new_node)
+{
+    t_node *last_node;
+
+    if (!lst || !new_node)
+        return ;
+    if (!*lst)
+    {
+        *lst = new_node;
+        return ;
+    }
+    last_node = ft_nodelast(*lst);
+    last_node->next = new_node;
+}
+
+void print_stack(t_node *stack, char *stack_name)
+{
+    printf("--- Stack %s ---\n", stack_name);
+    if (!stack)
+    {
+        printf("(empty)\n\n");
+        return ;
+    }
+    while (stack)
+    {
+        printf("%d\n", stack->value);
+        stack = stack->next;
+    }
+    printf("---------------\n\n");
+}
 
 int	ft_atoi(const char *nptr)
 {
@@ -70,7 +128,10 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	main(int argc, char **argv)
 {
-	int i = 1;
+	t_node *stack_a = NULL; // Pokazivač na glavu (početak) steka A
+    t_node *new_node;
+    int     i = 1;
+    int     num;	
 	int flag_count = 0;
 	//char flag[] = "--bench";
 	printf("====== Checking ATOI ======\n");
@@ -91,6 +152,16 @@ int	main(int argc, char **argv)
 	else if(ft_atoi(argv[i]) != 0)
 	{
         printf("After atoi input %d is ok: %d\n", i, ft_atoi(argv[i]));
+		num = ft_atoi(argv[i]);
+		new_node = ft_node_new(num);
+		if (!new_node)
+        {
+			//free(new_node);
+            // Ovde bi trebalo osloboditi već dodeljenu memoriju ako malloc otkaže
+            return (1);
+        }
+		ft_nodeadd_back(&stack_a, new_node);
+		
 	} else if (ft_atoi(argv[i]) == 0)
 		printf("After atoi input nb:%d is rejected : %d\n", i, ft_atoi(argv[i]));
 
@@ -99,6 +170,7 @@ int	main(int argc, char **argv)
 	if (flag_count == 1)
         printf("Bench mode activated!\n");
 	
+	print_stack(stack_a, "A");
 	
 	/*
 	int arr[] = {5, 1, 8, 3, 6};
