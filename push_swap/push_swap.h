@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:06:40 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/02 18:55:41 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <limits.h>
+
 
 // This is what the stack is made
 typedef struct s_node {
@@ -45,5 +47,6 @@ void rotate(t_stack **a);
 void ra(t_stack **a);
 void rb(t_stack **a);
 void rr(t_stack **a, t_stack **b);
+int	parsing_args(int argc, char **argv);
 
 #endif
