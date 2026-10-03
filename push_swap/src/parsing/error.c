@@ -10,3 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "push_swap.h"
+
+// TODO: void ft_error(t_node **a, t_node **b) -> free both stacks,
+//       write "Error" + newline to fd 2 (stderr), exit(1).

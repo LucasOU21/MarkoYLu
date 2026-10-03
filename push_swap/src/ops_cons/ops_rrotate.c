@@ -3,22 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_rrotate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:18 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/01 12:17:10 by mmitrovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ops_rotate.c                                       :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/25 17:51:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/26 17:57:34 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/09/28 18:09:28 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +87,6 @@ I dont know who the did it becuase theu did it differently
 
 */
 
-/*
 int main(void)
 {
     // ručno pravimo stack 3 -> 2 -> 1, bez argumenata, da bude jednostavno
@@ -132,4 +119,4 @@ int main(void)
 	//print_stack(b);
 
     return (0);
-}*/
+}

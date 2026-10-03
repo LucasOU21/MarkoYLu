@@ -6,14 +6,18 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:29:33 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/09/26 18:17:09 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
 #include <stdlib.h>
-# include "push_swap.h"
 
+typedef struct s_stack
+{
+    int             value;
+    struct s_stack  *next;
+} t_stack;
 
 t_stack *create_node(int value)
 {
@@ -87,7 +91,6 @@ void	rr(t_stack **a, t_stack **b)
 	write(1, "rr\n", 3);
 }
 
-/*
 int main(void)
 {
     // ručno pravimo stack 3 -> 2 -> 1, bez argumenata, da bude jednostavno
@@ -102,7 +105,7 @@ int main(void)
 	b->next->next = create_node(1);
 	
     a->next = create_node(2);
-    a->next->next = create_node(1sb);
+    a->next->next = create_node(1);
 
     printf("--- Before rotate ---\n");
     print_stack(a);
@@ -120,4 +123,4 @@ int main(void)
 	//print_stack(b);
 
     return (0);
-}*/
+}

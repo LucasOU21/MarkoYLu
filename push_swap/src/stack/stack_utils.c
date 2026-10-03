@@ -12,17 +12,6 @@
 
 #include "push_swap.h"
 
-t_node *ft_node_new(int value)
-{
-	t_node	*new_node;
-
-	new_node = (t_node *)malloc(sizeof(t_node));
-	if (!new_node)
-		return (NULL);
-	new_node->value = value;
-	new_node->next = NULL;
-	return (new_node);
-}
 t_node *ft_nodelast(t_node *lst)
 {
     if (!lst)
@@ -47,20 +36,25 @@ void ft_nodeadd_back(t_node **lst, t_node *new_node)
     last_node->next = new_node;
 }
 
-void print_stack(t_node *stack, char *stack_name)
+// from old_main.c
+void	ft_nodedelone(t_node *node)
 {
-    printf("========== STACK %s ==========\n", stack_name);
-    if (!stack)
-    {
-        printf("(empty)\n\n");
-        return ;
-    }
-	int i = 1;
-    while (stack)
-    {
-        printf("On position %d in stack A, is number: %d\n", i, stack->value);
-        stack = stack->next;
-		i++;
-    }
-    printf("========== END OF STACK A ==========\n\n");
+	if (!node)
+		return ;
+	free(node);
+}
+
+void	ft_nodeclear(t_node **lst)
+{
+	t_node	*tmp;
+
+	if (!lst)
+		return ;
+	while (*lst)
+	{
+		tmp = (*lst)->next;
+		ft_nodedelone(*lst);
+		*lst = tmp;
+	}
+	*lst = NULL;
 }
