@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/03 15:02:41 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/10/03 17:25:28 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,19 @@
 // FOR NOW main() is a TEST of step 1 (parsing). Try:
 //   make && ./push_swap 5 -3 0 12abc 2147483648 --bench
 // Replace it with the real steps above once parsing works.
-int main(int argc, char **argv)
-{
-	int	i;
 
-	printf("====== ps_atoi on each argument ======\n");
-	i = 1;
-	while (i < argc)
-	{
-		printf("  \"%s\"  ->  %d\n", argv[i], ps_atoi(argv[i]));
-		i++;
-	}
-	printf("\n====== parsing_args() ======\n");
-	printf("parsing_args returned %d\n", parsing_args(argc, argv));
+int	main(int argc, char **argv)
+{
+	t_node	*stack_a;
+	int		bench;
+
+	// bez argumenata: ne radi nista i ne ispisuj nista
+	if (argc < 2)
+		return (0);
+	// parse_args vec ispisuje Error i brise stek ako nesto ne valja
+	if (!parse_args(argc, argv, &stack_a, &bench))
+		return (1);
+	// ovde ce ici sortiranje (koristi bench za statistiku)
+	ft_nodeclear(&stack_a);
 	return (0);
 }

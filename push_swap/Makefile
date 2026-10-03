@@ -6,7 +6,7 @@
 #    By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2026/09/29 16:44:16 by mmitrovi          #+#    #+#              #
-#    Updated: 2026/09/29 18:19:27 by mmitrovi         ###   ########.fr        #
+#    Updated: 2026/10/03 17:44:36 by mmitrovi         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,19 +19,8 @@ LIBFT_DIR = libft/
 LIBFT = $(LIBFT_DIR)libft.a
 
 SRCS = main.c \
-bench.c \
-disorder_m.c \
-ops_push.c \
-ops_rotate.c \
-ops_rrotate.c \
-ops_swap.c \
 error.c \
 parsing_args.c \
-adqptive_strat.c \
-complex_strat.c \
-medium_strat.c \
-simple_strat.c \
-strats_select.c \
 chunk_sort.c \
 insertion_sort.c \
 selection_sort.c \

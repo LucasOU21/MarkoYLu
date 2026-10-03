@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/03 15:45:24 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/10/03 17:46:30 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void print_stack(t_node *stack, char *stack_name);
 
 /* ---------- src/parsing/ ---------- */
 int	ps_atoi(const char *nptr );
-int parsing_args(int argc, char **argv);
+int pars_args(int argc, char **argv);
 
 /* ---------- src/ops/ ---------- */
 void sa(t_node **a);
