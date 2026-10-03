@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:03 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/03 22:58:54 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/04 00:23:19 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,8 +75,6 @@ static int	parse_flag(char *arg, t_flags *f)
 		r = check_flag(arg, "--complex", &f->complex);
 	return (r);
 }
-
-
 
 // Prodje kroz sve argumente i napravi stek A.
 int	parse_args(int argc, char **argv, t_node **stack, t_flags *flags)
