@@ -6,26 +6,32 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:03 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/03 17:25:09 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/03 22:58:54 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
 
-// Same logic as main() in practice/old_main.c (the commented-out array test
-// that was here is still in practice/old_main.c and practice/chunk_sort.c).
-//
-// TODO: BUG (leak) - stack_a is built here and then lost when the function
-//       returns. Return it instead:  t_node *parsing_args(int argc, char **argv)
-//       (and return NULL on error after ft_nodeclear(&stack_a)).
-// TODO: use your ps_atoi (src/parsing/ps_atoi.c) instead of libft's ft_atoi,
-//       which accepts "12abc" and overflows silently.
-// TODO: an invalid number must not be skipped - the subject wants "Error\n"
-//       on stderr and exit. Put that in error.c.
-// TODO: check for duplicate numbers (also an "Error\n" case).
-// TODO: on malloc fail, call ft_nodeclear(&stack_a) like old_main.c does.
-// TODO: remove the debug printf's once it works (only ops go to stdout).
-// TODO: argv like "3 2 1" (one string) - decide if you support it (ft_split).
+
+
+int	error_exit(t_node **stack)
+{
+	if (stack)
+		ft_nodeclear(stack);
+	write(2, "Error\n", 6);
+	return (0);
+}
+
+int	has_duplicate(t_node *stack, int num)
+{
+	while (stack)
+	{
+		if (stack->value == num)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
 
 // Obradi jedan argument koji NIJE flag:
 // 1) ps_atoi proveri da je validan int (bez slova, bez overflow-a) i upise ga u num
@@ -33,7 +39,7 @@
 // 3) napravi cvor i zakaci ga na kraj steka
 // Vraca 1 ako je sve ok, 0 ako je bilo koja provera pala (ili malloc).
 // Ne brise stek: to radi onaj ko je pozvao (parse_args preko error_exit).
-static int	add_number(t_node **stack, char *arg)
+int	add_number(t_node **stack, char *arg)
 {
 	int		num;
 	t_node	*new_node;
@@ -46,33 +52,51 @@ static int	add_number(t_node **stack, char *arg)
 	ft_nodeadd_back(stack, new_node);
 	return (1);
 }
+static int	check_flag(char *arg, char *name, int *seen)
+{
+	if (ft_strncmp(arg, name, ft_strlen(name) + 1) != 0)
+		return (0);
+	if (*seen)
+		return (-1);
+	*seen = 1;
+	return (1);
+}
+
+static int	parse_flag(char *arg, t_flags *f)
+{
+	int	r;
+
+	r = check_flag(arg, "--bench", &f->bench);
+	if (r == 0)
+		r = check_flag(arg, "--simple", &f->simple);
+	if (r == 0)
+		r = check_flag(arg, "--medium", &f->medium);
+	if (r == 0)
+		r = check_flag(arg, "--complex", &f->complex);
+	return (r);
+}
+
 
 
 // Prodje kroz sve argumente i napravi stek A.
-// stack_a: izlaz, pokazivac na glavu steka (zato **, da main dobije rezultat)
-// bench:   izlaz, 1 ako je --bench zadat, inace 0
-// Vraca 1 pri uspehu, 0 pri gresci (tada je stek vec oslobodjen i
-// "Error\n" ispisan, main samo treba da vrati 1).
-int	parse_args(int argc, char **argv, t_node **stack_a, int *bench)
+int	parse_args(int argc, char **argv, t_node **stack, t_flags *flags)
 {
 	int	i;
+	int	r;
 
 	i = 1;
-	*stack_a = NULL;
-	*bench = 0;
+	*stack = NULL;
+	flags->bench = 0;
+	flags->simple = 0;
+	flags->medium = 0;
+	flags->complex = 0;
 	while (i < argc)
 	{
-		// poredimo 8 znakova: "--bench" (7) + '\0', pa "--benchX" ne prolazi
-		if (ft_strncmp(argv[i], "--bench", 8) == 0)
-		{
-			// drugi --bench je greska
-			if (*bench)
-				return (error_exit(stack_a));
-			*bench = 1;
-		}
-		// sve ostalo mora biti validan broj
-		else if (!add_number(stack_a, argv[i]))
-			return (error_exit(stack_a));
+		r = parse_flag(argv[i], flags);
+		if (r < 0)
+			return (error_exit(stack));
+		if (r == 0 && !add_number(stack, argv[i]))
+			return (error_exit(stack));
 		i++;
 	}
 	return (1);

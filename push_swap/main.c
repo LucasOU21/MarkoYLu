@@ -6,11 +6,11 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/03 17:33:07 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/03 23:02:58 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//# include "libft.h"
+# include "libft/libft.h"
 # include "push_swap.h"
 
 #include <stdio.h>
@@ -33,15 +33,17 @@
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
-	int		bench;
+	t_flags	flags;
 
-	// bez argumenata: ne radi nista i ne ispisuj nista
 	if (argc < 2)
 		return (0);
-	// parse_args vec ispisuje Error i brise stek ako nesto ne valja
-	if (!parse_args(argc, argv, &stack_a, &bench))
+	printf("====== Checking ATOI ======\n");
+	if (!parse_args(argc, argv, &stack_a, &flags))
 		return (1);
-	// ovde ce ici sortiranje (koristi bench za statistiku)
+	printf("bench=%d simple=%d medium=%d complex=%d\n",
+		flags.bench, flags.simple, flags.medium, flags.complex);
+	print_stack(stack_a, "A");
 	ft_nodeclear(&stack_a);
+	print_stack(stack_a, "A");
 	return (0);
 }

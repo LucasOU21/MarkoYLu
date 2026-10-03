@@ -6,24 +6,34 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/03 17:36:15 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/03 22:31:30 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 #define PUSH_SWAP_H
 
-#include "libft.h"
-#include <limits.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+# include "libft.h"
+# include <limits.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
 
 // This is what the stack is made
 typedef struct s_node {
   int value;           // the number from argv
   struct s_node *next; // the node below it, NULL for the bottom
 } t_node;
+
+// struct for flags
+typedef struct s_flags
+{
+	int	bench;
+	int	simple;
+	int	medium;
+	int	complex;
+}	t_flags;
+
 
 /*A stack is basically a pointer to the top of the stack nothing else*/
 // This is just a struct to have a pointer to both stacks, called context
@@ -44,9 +54,11 @@ void ft_nodeclear(t_node **lst);
 void print_stack(t_node *stack, char *stack_name);
 
 /* ---------- src/parsing/ ---------- */
-int	ps_atoi(const char *nptr );
-int	parse_args(int argc, char **argv, t_node **stack_a, int *bench);
-int	error_exit(t_node **stack);
+int	ps_atoi(const char *s, int *out);
+int error_exit(t_node **stack);
+int		has_duplicate(t_node *stack, int num);
+int		add_number(t_node **stack, char *arg);
+int		parse_args(int argc, char **argv, t_node **stack, t_flags *flags);
 /* ---------- src/ops/ ---------- */
 void sa(t_node **a);
 void sb(t_node **a);

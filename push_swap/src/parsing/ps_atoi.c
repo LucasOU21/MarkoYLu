@@ -6,20 +6,12 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:03 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/03 17:28:39 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/03 18:41:45 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// Your own atoi from old_main.c. It's better than libft's ft_atoi for
-// push_swap because it rejects "12abc" and catches int overflow.
-// Renamed ft_atoi -> ps_atoi so it does not clash with the one in libft.
-//
-// TODO: BUG - it returns 0 for errors, so a real "0" from the user is
-//       rejected too. Idea: return a status and give the number back
-//       through a pointer:  int ps_atoi(const char *s, int *out);
-// TODO: an empty string "" or just "-" currently returns 0 -> must be an error.
 static int	read_sign(const char *s, int *i)
 {
 	int	sign;
