@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   stack_new.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:52:33 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/25 17:52:34 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/10/04 13:40:37 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ t_node *ft_node_new(int value)
 	if (!new_node)
 		return (NULL);
 	new_node->value = value;
+	new_node->index = 0;   //  jer je čvor tek napravljen
 	new_node->next = NULL;
 	return (new_node);
 }

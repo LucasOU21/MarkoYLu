@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/03 22:31:30 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/04 13:42:28 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 // This is what the stack is made
 typedef struct s_node {
   int value;           // the number from argv
+  int index; // I added this incex for indexing  later 
   struct s_node *next; // the node below it, NULL for the bottom
 } t_node;
 
@@ -52,6 +53,7 @@ void ft_nodeadd_back(t_node **lst, t_node *new_node);
 void ft_nodedelone(t_node *node);
 void ft_nodeclear(t_node **lst);
 void print_stack(t_node *stack, char *stack_name);
+void	assign_index(t_node *stack);
 
 /* ---------- src/parsing/ ---------- */
 int	ps_atoi(const char *s, int *out);
@@ -62,12 +64,10 @@ int		parse_args(int argc, char **argv, t_node **stack, t_flags *flags);
 /* ---------- src/ops/ ---------- */
 void sa(t_node **a);
 void sb(t_node **a);
-void push(t_node **a, t_node **b);
-void rotate(t_node **a);
+void	pa(t_node **a, t_node **b);
+void	pb(t_node **a, t_node **b);
 void ra(t_node **a);
-void rb(t_node **a);
-void rr(t_node **a, t_node **b);
-void rrotate(t_node **a);
+
 // TODO: pa, pb, ss, rra, rrb, rrr when you write them
 
 /* ---------- src/strats/ src/disorder/ src/bench/ ---------- */
