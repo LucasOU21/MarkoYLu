@@ -1,21 +1,18 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   ops_push.c                                         :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/25 17:51:22 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:25:52 by mmitrovi         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+/*
+** Your test code for the operations, collected from ops_push.c, ops_rotate.c
+** and ops_rrotate.c (it was copy-pasted 3 times there, which caused
+** "multiple definition" errors when building everything together).
+** This file is NOT part of the Makefile - it's your playground.
+*/
 
 #include <stdio.h>
 #include <stdlib.h>
-# include "push_swap.h"
 
-
-
+typedef struct s_stack
+{
+	int				value;
+	struct s_stack	*next;
+}	t_stack;
 
 t_stack *create_node(int value)
 {
@@ -36,6 +33,7 @@ void print_stack(t_stack *stack)
     }
 }
 
+/* debug version of sa with prints, from ops_push.c / ops_rotate.c */
 /*void sa(t_stack **a)
 {
     t_stack *tmp;
@@ -55,18 +53,6 @@ void print_stack(t_stack *stack)
 	    printf("after (*a)->next = tmp: (*a)->next->value = %d\n", (*a)->next->value);
 
 }*/
-
-void push(t_stack **a, t_stack **b)
-{
-    t_stack *tmp;
-
-		tmp = *a;
-		*a = (*a)->next;
-		tmp->next = (*b);
-		*b = tmp;
-		
-
-}
 
 /*
 int main(void)
@@ -93,6 +79,8 @@ int main(void)
     //sa(&a);
 	//sa(&b);
 	push(&a, &b);
+	//rotate(&a);
+	//rrotate(&a);
 
     printf("--- A stak after push ---\n");
     print_stack(a);

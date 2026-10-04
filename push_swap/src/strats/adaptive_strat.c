@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:07 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:23:12 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/09/29 18:07:47 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,4 @@ argument (upper bounds) for time and space within the Push_swap model.*/
 /*THE ABOVE BASICALLY MEANS
 
 we have to create a algo to determine which method we will need to use depending from the user input
-it determine what stratergy it will use from simple to complex.*/c
+it determine what stratergy it will use from simple to complex.*/

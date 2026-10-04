@@ -13,7 +13,7 @@ int main(void)
 	}
 	for (int i = 0; i < 1000; i++)
 	{
-	write(fd, "Hi lucas\n", 10);
+	write(fd, "Hi Jonatan\n", 11);
 	}
 	close(fd);
 

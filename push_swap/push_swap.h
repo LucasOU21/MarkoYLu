@@ -6,38 +6,71 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:06:40 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/04 14:25:10 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#define PUSH_SWAP_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include "libft.h"
-# include <stdlib.h>
+#include "libft.h"
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
 
+typedef struct s_node {
+  int value;
+  int index; // I added this incex for indexing  later
+  struct s_node *next;
+} t_node;
 
-typedef struct s_stack
-{
-    int             value;
-    struct s_stack  *next;
-} t_stack;
+// struct for flags
+typedef struct s_flags {
+  int bench;
+  int simple;
+  int medium;
+  int complex;
+} t_flags;
 
+typedef struct s_ps {
+  t_node *a;
+  t_node *b;
+  int size;
+  /*Still mising other info*/
+  // TODO: bench needs a counter here later, e.g. int op_count;
+} t_ps;
 
-void insertion_sort(int arr[], int N);
-void selection_sort(int arr[], int N);
-void chunk_sort(int arr[], int len, int num_chunks);
-void sa(t_stack **a);
-void sb(t_stack **a);
-t_stack *create_node(int value);
-void print_stack(t_stack *stack);
-void push(t_stack **a, t_stack **b);
-void rotate(t_stack **a);
-void	ra(t_stack **a);
-void	rb(t_stack **a);
-void	rr(t_stack **a, t_stack **b);
+/* ---------- src/stack/ ---------- */
+t_node *ft_node_new(int value);
+t_node *ft_nodelast(t_node *lst);
+void ft_nodeadd_back(t_node **lst, t_node *new_node);
+void ft_nodedelone(t_node *node);
+void ft_nodeclear(t_node **lst);
+void print_stack(t_node *stack, char *stack_name);
+void assign_index(t_node *stack);
+int is_sorted(t_node *a);
+int stack_size(t_node *a);
+/* ---------- src/parsing/ ---------- */
+int ps_atoi(const char *s, int *out);
+int error_exit(t_node **stack);
+int has_duplicate(t_node *stack, int num);
+int add_number(t_node **stack, char *arg);
+int parse_args(int argc, char **argv, t_node **stack, t_flags *flags);
+/* ---------- src/ops/ ---------- */
+void sa(t_node **a);
+void sb(t_node **a);
+void pa(t_node **a, t_node **b);
+void pb(t_node **a, t_node **b);
+void ra(t_node **a);
 
+// TODO: pa, pb, ss, rra, rrb, rrr when you write them
+
+/* ---------- src/strats/ src/disorder/ src/bench/ ---------- */
+// TODO: add prototypes as you write these files
+double disorder_m(t_node *a);
+
+// The array sorts (insertion/selection/chunk/radix) moved to practice/.
+// They sort arrays, not stacks, so they are not part of the program.
 
 #endif

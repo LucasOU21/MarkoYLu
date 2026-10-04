@@ -4,8 +4,6 @@
 
 int operation_count = 0;   // globalni brojač, ili prosledjen kroz strukturu
 
-
-
 void insertion_sort(int arr[], int N)
 {
 	for (int i = 1; i < N; i++)
@@ -23,7 +21,6 @@ void insertion_sort(int arr[], int N)
 		arr[j + 1] = key;
 	}
 }
-
 
 void chunk_sort(int arr[], int len, int num_chunks)
 {
@@ -72,7 +69,6 @@ void chunk_sort(int arr[], int len, int num_chunks)
 	for (int i = 0; i < len; i++)
         arr[i] = result[i];
 }
-
 
 int	main (int argc, char **argv)
 {
