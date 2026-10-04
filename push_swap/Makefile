@@ -13,8 +13,9 @@ src/stack/stack_new.c \
 src/stack/stack_print.c \
 src/stack/stack_utils.c \
 src/stack/stack_index.c \
+src/stack/stack_info.c \
 src/ops/ops_push.c \
-src/ops/ops_rotate.c
+src/ops/ops_rotate.c 
 
 OBJS = $(SRCS:.c=.o)
 

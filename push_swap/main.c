@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/04 13:53:07 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/04 14:26:24 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int	main(int argc, char **argv)
 	if (!parse_args(argc, argv, &stack_a, &flags))
 		return (1);
 	assign_index(stack_a);      // NOVO: bez ovoga svi indexi ostaju 0
-
-	printf("bench=%d simple=%d medium=%d complex=%d\n",
+printf("size=%d sorted=%d\n", stack_size(stack_a), is_sorted(stack_a));
+	printf("bench: %d simple: %d medium: %d complex: %d\n",
 		flags.bench, flags.simple, flags.medium, flags.complex);
 	print_stack(stack_a, "A");
 	ft_nodeclear(&stack_a);

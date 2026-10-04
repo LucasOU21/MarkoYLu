@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/04 13:42:28 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/04 14:25:10 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ void ft_nodedelone(t_node *node);
 void ft_nodeclear(t_node **lst);
 void print_stack(t_node *stack, char *stack_name);
 void	assign_index(t_node *stack);
-
+int	is_sorted(t_node *a);
+int	stack_size(t_node *a);
 /* ---------- src/parsing/ ---------- */
 int	ps_atoi(const char *s, int *out);
 int error_exit(t_node **stack);
