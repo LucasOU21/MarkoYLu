@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:22 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:25:52 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/04 12:31:54 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,26 @@
 //       stack is empty. Add a guard like you did in sa().
 // TODO: the subject needs pa / pb wrappers that call push() and print
 //       "pa\n" / "pb\n" (same idea as ra/rb in ops_rotate.c).
-void push(t_node **a, t_node **b) {
-  t_node *tmp;
+static void	push(t_node **src, t_node **dst)
+{
+	t_node	*tmp;
 
-  tmp = *a;
-  *a = (*a)->next;
-  tmp->next = (*b);
-  *b = tmp;
+	if (!*src)
+		return ;
+	tmp = *src;
+	*src = (*src)->next;
+	tmp->next = *dst;
+	*dst = tmp;
+}
+
+void	pa(t_node **a, t_node **b)
+{
+	push(b, a);
+	write(1, "pa\n", 3);
+}
+
+void	pb(t_node **a, t_node **b)
+{
+	push(a, b);
+	write(1, "pb\n", 3);
 }
