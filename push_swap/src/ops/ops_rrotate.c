@@ -31,10 +31,11 @@ static void	rrotate(t_node **s)
 	*s = last;
 }
 
-void	rra(t_node **a)
+void	rra(t_node **a, t_bench *bench)
 {
 	rrotate(a);
 	write(1, "rra\n", 4);
+	bench->ops[OP_RRA]++;
 }
 
 void	rrb(t_node **b)

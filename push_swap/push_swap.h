@@ -79,9 +79,11 @@ void sb(t_node **a);
 void	pa(t_node **a, t_node **b, t_bench *bench);
 void	pb(t_node **a, t_node **b, t_bench *bench);
 void	ra(t_node **a, t_bench *bench);
+void	rra(t_node **a, t_bench *bench);
 // TODO: sa, sb, rb, rr, rra, rrb, rrr, svaka sa t_bench *bench
 
 void	radix_sort(t_node **a, t_node **b, t_bench *bench);
+void	simple_sort(t_node **a, t_node **b, t_bench *bench);
 
 // TODO: pa, pb, ss, rra, rrb, rrr when you write them
 

@@ -67,6 +67,7 @@ int	main(int argc, char **argv)
 	t_flags	flags;
 	t_bench	bench;
 	double	disorder;
+	char	*strategy;
 
 	if (argc < 2)
 		return (0);
@@ -82,12 +83,17 @@ int	main(int argc, char **argv)
 	dprintf(2, "flags: bench=%d simple=%d medium=%d complex=%d\n",
 		flags.bench, flags.simple, flags.medium, flags.complex);
 	print_stack(a, "A (before)");
-	if (!is_sorted(a))
+	strategy = "radix";
+	if (flags.simple)
+		strategy = "simple";
+	if (!is_sorted(a) && flags.simple)
+		simple_sort(&a, &b, &bench);
+	else if (!is_sorted(a))
 		radix_sort(&a, &b, &bench);
 	print_stack(a, "A (after)");
 	print_stack(b, "B (after)");
 	if (flags.bench)
-		bench_print(&bench, disorder, "radix");
+		bench_print(&bench, disorder, strategy);
 	ft_nodeclear(&a);
 	ft_nodeclear(&b);
 	return (0);
