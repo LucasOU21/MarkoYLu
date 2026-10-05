@@ -15,6 +15,8 @@ src/stack/stack_utils.c \
 src/stack/stack_index.c \
 src/stack/stack_info.c \
 src/disorder/disorder_m.c \
+src/bench/bench.c \
+src/strats/radix.c \
 src/ops/ops_swap.c \
 src/ops/ops_push.c \
 src/ops/ops_rotate.c \

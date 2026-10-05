@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/04 14:26:24 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/05 17:22:36 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 //   make && ./push_swap 5 -3 0 12abc 2147483648 --bench
 // Replace it with the real steps above once parsing works.
 
+/*
 int	main(int argc, char **argv)
 {
 	t_node	*stack_a;
@@ -54,5 +55,40 @@ printf("size=%d sorted=%d\n", stack_size(stack_a), is_sorted(stack_a));
 	print_stack(stack_a, "A");
 
 	
+	return (0);
+}*/
+
+#include "push_swap.h"
+
+int	main(int argc, char **argv)
+{
+	t_node	*a;
+	t_node	*b;
+	t_flags	flags;
+	t_bench	bench;
+	double	disorder;
+
+	if (argc < 2)
+		return (0);
+	b = NULL;
+	if (!parse_args(argc, argv, &a, &flags))
+		return (1);
+	bench_init(&bench);
+	assign_index(a);
+	disorder = disorder_m(a);
+	dprintf(2, "====== DEBUG ======\n");
+	dprintf(2, "disorder: %.2f%%\n", disorder * 100);
+	dprintf(2, "size=%d sorted=%d\n", stack_size(a), is_sorted(a));
+	dprintf(2, "flags: bench=%d simple=%d medium=%d complex=%d\n",
+		flags.bench, flags.simple, flags.medium, flags.complex);
+	print_stack(a, "A (before)");
+	if (!is_sorted(a))
+		radix_sort(&a, &b, &bench);
+	print_stack(a, "A (after)");
+	print_stack(b, "B (after)");
+	if (flags.bench)
+		bench_print(&bench, disorder, "radix");
+	ft_nodeclear(&a);
+	ft_nodeclear(&b);
 	return (0);
 }

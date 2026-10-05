@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/04 14:25:10 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/05 17:18:15 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,22 @@ typedef struct s_flags {
   int medium;
   int complex;
 } t_flags;
+
+// Imena operacija umesto brojeva: OP_SA = 0, OP_SB = 1, ... OP_RRR = 10.
+// OP_COUNT je uvek poslednji i automatski je jednak broju operacija (11).
+
+typedef enum e_op
+{
+	OP_SA, OP_SB, OP_SS, OP_PA, OP_PB,
+	OP_RA, OP_RB, OP_RR, OP_RRA, OP_RRB, OP_RRR,
+	OP_COUNT
+}	t_op;
+
+// Brojac: ops[OP_PA] je koliko puta je pozvan pa, ops[OP_RA] koliko puta ra...
+typedef struct s_bench
+{
+	int	ops[OP_COUNT];
+}	t_bench;
 
 typedef struct s_ps {
   t_node *a;
@@ -60,9 +76,12 @@ int parse_args(int argc, char **argv, t_node **stack, t_flags *flags);
 /* ---------- src/ops/ ---------- */
 void sa(t_node **a);
 void sb(t_node **a);
-void pa(t_node **a, t_node **b);
-void pb(t_node **a, t_node **b);
-void ra(t_node **a);
+void	pa(t_node **a, t_node **b, t_bench *bench);
+void	pb(t_node **a, t_node **b, t_bench *bench);
+void	ra(t_node **a, t_bench *bench);
+// TODO: sa, sb, rb, rr, rra, rrb, rrr, svaka sa t_bench *bench
+
+void	radix_sort(t_node **a, t_node **b, t_bench *bench);
 
 // TODO: pa, pb, ss, rra, rrb, rrr when you write them
 
@@ -72,5 +91,12 @@ double disorder_m(t_node *a);
 
 // The array sorts (insertion/selection/chunk/radix) moved to practice/.
 // They sort arrays, not stacks, so they are not part of the program.
+
+
+/* ---------- src/bench/ ---------- */
+void	bench_init(t_bench *bench);
+int		bench_total(t_bench *bench);
+void	bench_print(t_bench *bench, double disorder, char *strategy);
+
 
 #endif

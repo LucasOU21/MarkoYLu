@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/04 12:33:04 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/05 17:10:16 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ static void	rotate(t_node **s)
 	first->next = NULL;
 }
 
-void	ra(t_node **a)
+void	ra(t_node **a, t_bench *bench)
 {
 	rotate(a);
 	write(1, "ra\n", 3);
+	bench->ops[OP_RA]++;        // NOVO
 }
 
 void	rb(t_node **b)

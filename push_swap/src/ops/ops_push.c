@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:22 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/04 12:31:54 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/05 17:10:03 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,23 @@ static void push(t_node **src, t_node **dst) {
   *dst = tmp;
 }
 
+
+void	pa(t_node **a, t_node **b, t_bench *bench)
+{
+	push(b, a);
+	write(1, "pa\n", 3);
+	bench->ops[OP_PA]++;        // NOVO: zabelezi da je pa izvrsen
+}
+
+void	pb(t_node **a, t_node **b, t_bench *bench)
+{
+	push(a, b);
+	write(1, "pb\n", 3);
+	bench->ops[OP_PB]++;        // NOVO
+}
+
+/* OLD PA i PB
+
 void pa(t_node **a, t_node **b) {
   push(b, a);
   write(1, "pa\n", 3);
@@ -31,4 +48,4 @@ void pa(t_node **a, t_node **b) {
 void pb(t_node **a, t_node **b) {
   push(a, b);
   write(1, "pb\n", 3);
-}
+} */

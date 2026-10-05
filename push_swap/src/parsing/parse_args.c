@@ -6,13 +6,11 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:03 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/04 13:40:11 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/05 16:37:45 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "push_swap.h"
-
-
 
 int	error_exit(t_node **stack)
 {

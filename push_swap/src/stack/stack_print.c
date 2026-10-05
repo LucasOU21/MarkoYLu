@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:52:30 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/04 14:00:03 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/05 17:22:23 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,23 @@
 // Debug helper only - push_swap must NOT print this in the final version
 // (only the operations like "sa\n", "pb\n" go to stdout).
 // TODO: it always says "stack A" even when you print stack B - use stack_name.
-void print_stack(t_node *stack, char *stack_name)
+void	print_stack(t_node *stack, char *stack_name)
 {
-int	i;
+	int	i;
 
-	printf("========== STACK %s ==========\n", stack_name);
+	dprintf(2, "========== STACK %s ==========\n", stack_name);
 	if (!stack)
 	{
-		printf("(empty)\n\n");
+		dprintf(2, "(empty)\n\n");
 		return ;
 	}
 	i = 1;
 	while (stack)
 	{
-		printf("pos: %d in %s: index: %d value: %d\n",
+		dprintf(2, "pos: %d in %s: index: %d value: %d\n",
 			i, stack_name, stack->index, stack->value);
 		stack = stack->next;
 		i++;
 	}
-	printf("========== END OF STACK %s ==========\n\n", stack_name);
+	dprintf(2, "========== END OF STACK %s ==========\n\n", stack_name);
 }
