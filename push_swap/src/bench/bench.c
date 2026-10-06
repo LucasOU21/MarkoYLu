@@ -12,91 +12,60 @@
 
 #include "push_swap.h"
 
-// Imena za ispis. Redosled MORA da bude isti kao u enum-u t_op u push_swap.h.
-// "static const" niz nije globalna promenljiva koja se menja, samo tabela.
-static const char	*g_names[OP_COUNT] = {"sa", "sb", "ss", "pa", "pb",
-	"ra", "rb", "rr", "rra", "rrb", "rrr"};
+void bench_init(t_bench *bench) { ft_bzero(bench, sizeof(t_bench)); }
 
-// Postavlja sve brojace na 0. Zovi je jednom u main-u pre sortiranja.
-void	bench_init(t_bench *bench)
-{
-	int	i;
-
-	i = 0;
-	while (i < OP_COUNT)
-	{
-		bench->ops[i] = 0;
-		i++;
-	}
+// Writes a label and then a number to stderr, for example " pa: 5".
+// Why: we print "some text + a number" 12 times, so we write it once here.
+static void put_count(char *label, int count) {
+  ft_putstr_fd(label, 2);
+  ft_putnbr_fd(count, 2);
 }
 
-// Zbir svih operacija = ukupan broj izvrsenih operacija.
-int	bench_total(t_bench *bench)
-{
-	int	i;
-	int	sum;
+static void put_disorder(double disorder) {
+  int pct;
 
-	i = 0;
-	sum = 0;
-	while (i < OP_COUNT)
-	{
-		sum += bench->ops[i];
-		i++;
-	}
-	return (sum);
+  pct = (int)(disorder * 10000 + 0.5);
+  ft_putnbr_fd(pct / 100, 2);
+  ft_putstr_fd(".", 2);
+  if (pct % 100 < 10)
+    ft_putstr_fd("0", 2);
+  ft_putnbr_fd(pct % 100, 2);
+  ft_putstr_fd("%", 2);
 }
 
-// Ispisuje broj na zadati fd. ft_itoa alocira string, pa ga moramo free.
-static void	put_num(int n, int fd)
-{
-	char	*s;
-
-	s = ft_itoa(n);
-	if (!s)
-		return ;
-	ft_putstr_fd(s, fd);
-	free(s);
+// Writes how many times each of the 11 operations was used, on two lines.
+// Why: it is its own function only to keep bench_print under 25 lines.
+static void put_ops(t_bench *bench) {
+  ft_putstr_fd("[bench]", 2);
+  put_count(" sa: ", bench->sa);
+  put_count(" sb: ", bench->sb);
+  put_count(" ss: ", bench->ss);
+  put_count(" pa: ", bench->pa);
+  put_count(" pb: ", bench->pb);
+  ft_putstr_fd("\n[bench]", 2);
+  put_count(" ra: ", bench->ra);
+  put_count(" rb: ", bench->rb);
+  put_count(" rr: ", bench->rr);
+  put_count(" rra: ", bench->rra);
+  put_count(" rrb: ", bench->rrb);
+  put_count(" rrr: ", bench->rrr);
+  ft_putstr_fd("\n", 2);
 }
 
-// Ispisuje disorder kao procenat sa 2 decimale (npr. 0.4512 -> "45.12%").
-// pct je disorder * 10000 kao ceo broj: 4512. Deljenje sa 100 daje celi deo
-// (45), ostatak sa 100 daje decimale (12). Ako je ostatak < 10 dodajemo
-// nulu ispred, da 5 ne postane "45.5" umesto "45.05".
-static void	put_percent(double disorder)
-{
-	int	pct;
+// Prints the whole report. Called in main only when --bench was given.
+// Everything goes to stderr (fd 2) so it never mixes with the operations
+// on stdout. disorder is the value measured BEFORE sorting.
+void bench_print(t_bench *bench, double disorder, char *strategy) {
+  int total;
 
-	pct = (int)(disorder * 10000);
-	put_num(pct / 100, 2);
-	ft_putchar_fd('.', 2);
-	if (pct % 100 < 10)
-		ft_putchar_fd('0', 2);
-	put_num(pct % 100, 2);
-	ft_putchar_fd('%', 2);
-}
-
-// Ispisuje svu statistiku na STDERR (fd 2), da se ne pomesa sa operacijama
-// na stdout. Zove se samo kad je zadat --bench.
-void	bench_print(t_bench *bench, double disorder, char *strategy)
-{
-	int	i;
-
-	ft_putstr_fd("[bench] disorder: ", 2);
-	put_percent(disorder);
-	ft_putstr_fd("\n[bench] strategy: ", 2);
-	ft_putstr_fd(strategy, 2);
-	ft_putstr_fd("\n[bench] total ops: ", 2);
-	put_num(bench_total(bench), 2);
-	ft_putstr_fd("\n[bench] ", 2);
-	i = 0;
-	while (i < OP_COUNT)
-	{
-		ft_putstr_fd((char *)g_names[i], 2);
-		ft_putstr_fd(": ", 2);
-		put_num(bench->ops[i], 2);
-		if (i < OP_COUNT - 1)
-			ft_putstr_fd("  ", 2);
-		i++;
-	}
-	ft_putchar_fd('\n', 2);
+  total = bench->sa + bench->sb + bench->ss + bench->pa + bench->pb +
+          bench->ra + bench->rb + bench->rr + bench->rra + bench->rrb +
+          bench->rrr;
+  ft_putstr_fd("[bench] disorder: ", 2);
+  put_disorder(disorder);
+  ft_putstr_fd("\n[bench] strategy: ", 2);
+  ft_putstr_fd(strategy, 2);
+  put_count("\n[bench] total_ops: ", total);
+  ft_putstr_fd("\n", 2);
+  put_ops(bench);
 }

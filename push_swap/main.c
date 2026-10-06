@@ -83,11 +83,15 @@ int	main(int argc, char **argv)
 	dprintf(2, "flags: bench=%d simple=%d medium=%d complex=%d\n",
 		flags.bench, flags.simple, flags.medium, flags.complex);
 	print_stack(a, "A (before)");
-	strategy = "radix";
+	strategy = "Complex / O(n log n)";
 	if (flags.simple)
-		strategy = "simple";
+		strategy = "Simple / O(n^2)";
+	if (flags.medium)
+		strategy = "Medium / O(n sqrt(n))";
 	if (!is_sorted(a) && flags.simple)
 		simple_sort(&a, &b, &bench);
+	else if (!is_sorted(a) && flags.medium)
+		medium_sort(&a, &b, &bench);
 	else if (!is_sorted(a))
 		radix_sort(&a, &b, &bench);
 	print_stack(a, "A (after)");

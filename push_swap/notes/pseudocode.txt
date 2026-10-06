@@ -375,6 +375,76 @@ And in phase 2 the max is always close (its chunk is near the top).
 Easy upgrade later (fewer ops): in line 10, if the rank is in the
 LOWER half of the chunk, also do rb(ps). Keeps b more organized.
 
+--------------------------------------------------------------
+MEDIUM - FULL EXAMPLE BY HAND  (the one from medium_strat_notes.txt)
+--------------------------------------------------------------
+Input: 7 2 9 1 5 8 3 6 4      (top is on the LEFT)
+n = 9  ->  chunk = 3  (3*3 = 9)  ->  3 chunks
+   chunk 1 = the 3 smallest  = values 1 2 3   (ranks 0 1 2)
+   chunk 2 = the next 3      = values 4 5 6   (ranks 3 4 5)
+   chunk 3 = the 3 biggest   = values 7 8 9   (ranks 6 7 8)
+
+PHASE 1 - move everything to b, chunk by chunk.
+Rule: look at the top of a. In my chunk? -> pb.  Not mine? -> ra.
+
+ chunk 1 (want 1 2 3)
+   op    A (top left)          B (top left)
+         7 2 9 1 5 8 3 6 4     -
+   ra    2 9 1 5 8 3 6 4 7     -            7 is not mine, skip
+   pb    9 1 5 8 3 6 4 7       2            2 is mine
+   ra    1 5 8 3 6 4 7 9       2
+   pb    5 8 3 6 4 7 9         1 2
+   ra    8 3 6 4 7 9 5         1 2
+   ra    3 6 4 7 9 5 8         1 2
+   pb    6 4 7 9 5 8           3 1 2        got 3 -> chunk done
+
+ chunk 2 (want 4 5 6)
+   pb    4 7 9 5 8             6 3 1 2
+   pb    7 9 5 8               4 6 3 1 2
+   ra    9 5 8 7               4 6 3 1 2
+   ra    5 8 7 9               4 6 3 1 2
+   pb    8 7 9                 5 4 6 3 1 2
+
+ chunk 3 (want 7 8 9) - everything left is mine
+   pb    7 9                   8 5 4 6 3 1 2
+   pb    9                     7 8 5 4 6 3 1 2
+   pb    -                     9 7 8 5 4 6 3 1 2
+
+ Look at b now:  [9 7 8] [5 4 6] [3 1 2]
+ It is NOT sorted, but it is "sorted by blocks": big block on top,
+ small block at the bottom. That is the whole trick. The biggest
+ number is never far from the top.
+
+PHASE 2 - bring back to a, ALWAYS the biggest of b first.
+Rule: where is the max of b? Top half -> rb until it is on top.
+      Bottom half -> rrb. Then pa.
+
+   op        A                 B
+             -                 9 7 8 5 4 6 3 1 2
+   pa        9                 7 8 5 4 6 3 1 2     9 was already on top
+   rb        9                 8 5 4 6 3 1 2 7     8 was at position 1
+   pa        8 9               5 4 6 3 1 2 7
+   rrb       8 9               7 5 4 6 3 1 2       7 was at the bottom!
+   pa        7 8 9             5 4 6 3 1 2            1 rrb, not 6 rb
+   rb rb     7 8 9             6 3 1 2 5 4
+   pa        6 7 8 9           3 1 2 5 4
+   rrb rrb   6 7 8 9           5 4 3 1 2
+   pa        5 6 7 8 9         4 3 1 2
+   pa        4 5 6 7 8 9       3 1 2
+   pa        3 4 5 6 7 8 9     1 2
+   rb        3 4 5 6 7 8 9     2 1
+   pa        2 3 4 5 6 7 8 9   1
+   pa        1 2 3 4 5 6 7 8 9 -            SORTED
+
+ Phase 1 = 15 ops, phase 2 = 16 ops, total 31.
+
+Why is this faster than simple (step 4)?
+ Simple looks for the min in the WHOLE stack every time -> far away.
+ Here the max is always inside the top block (or just rotated to the
+ bottom) -> only about sqrt(n) steps away, never n steps.
+ n numbers * about sqrt(n) steps each = n * sqrt(n).
+   100 numbers: simple ~ 100*100/4 = 2500 ops, medium ~ 100*10 = 1000.
+
 
 ====================================================================
 STEP 6 - COMPLEX STRATEGY  O(n log n)   (radix on bits)
@@ -409,6 +479,83 @@ But with only 2 "buckets": bit 0 -> goes to b, bit 1 -> stays in a.
 15      bit++
 Why O(n log n): log(n) bits, each bit costs about n + n/2 ops.
 500 numbers: 9 bits * ~750 = ~6700 ops (pass is < 12000).
+
+--------------------------------------------------------------
+COMPLEX - FIRST, WHAT IS A "BIT"?
+--------------------------------------------------------------
+We write numbers with digits 0-9. The computer writes them with only
+0 and 1. Each 0/1 is a "bit".
+   rank 0 = 00      rank 1 = 01      rank 2 = 10      rank 3 = 11
+The RIGHT bit is "bit 0", the next one to the left is "bit 1".
+
+How to read one bit in C:   (rank >> bit) & 1
+   rank = 2 = 10
+   bit 0:  10 >> 0 = 10,  10 & 1 = 0      -> the right bit is 0
+   bit 1:  10 >> 1 =  1,   1 & 1 = 1      -> the left bit is 1
+   ">>" slides the number to the right, "& 1" looks only at the last bit.
+
+This is why we NEED ranks (step 1c): bits of -5 or 2147483647 are a
+mess. Ranks are 0 .. n-1, small and never negative.
+
+--------------------------------------------------------------
+COMPLEX - FULL EXAMPLE BY HAND
+--------------------------------------------------------------
+Input: 40 -5 12 7
+Ranks:  3  0  2  1        (-5 smallest = 0, then 7 = 1, 12 = 2, 40 = 3)
+In bits: 11 00 10 01
+n = 4 -> biggest rank is 3 = 11 -> 2 bits -> we do 2 rounds.
+Below we write the RANKS (that is what the code looks at).
+
+ROUND 1 - look at bit 0 (the RIGHT bit).   0 -> pb    1 -> ra
+   op    A (top left)     B         why
+         3 0 2 1          -
+   ra    0 2 1 3          -         3 = 1[1]  right bit is 1 -> stay
+   pb    2 1 3            0         0 = 0[0]  right bit is 0 -> to b
+   pb    1 3              2 0       2 = 1[0]  right bit is 0 -> to b
+   ra    3 1              2 0       1 = 0[1]  right bit is 1 -> stay
+   -- we looked at all 4 numbers, now bring b back --
+   pa    2 3 1            0
+   pa    0 2 3 1          -
+ Result: 0 2 | 3 1   -> first the ones ending in 0, then the ones
+                        ending in 1. Sorted by the right bit only.
+
+ROUND 2 - look at bit 1 (the LEFT bit).
+   op    A                B         why
+         0 2 3 1          -
+   pb    2 3 1            0         0 = [0]0  left bit is 0 -> to b
+   ra    3 1 2            0         2 = [1]0  left bit is 1 -> stay
+   ra    1 2 3            0         3 = [1]1  left bit is 1 -> stay
+   pb    2 3              1 0       1 = [0]1  left bit is 0 -> to b
+   pa    1 2 3            0
+   pa    0 1 2 3          -         SORTED  (= -5 7 12 40)
+ 12 operations.
+
+Why does it work? (the question they WILL ask at defense)
+ Round 1 puts things in order by the right bit.
+ Round 2 sorts by the left bit BUT keeps the order from round 1 for
+ numbers that have the same left bit. Look at round 2: 2 and 3 both
+ have left bit 1. 2 was before 3 after round 1, and it is still
+ before 3 at the end. Nobody "jumps over" - that is called a STABLE
+ sort, and radix only works because each round is stable.
+ (pb reverses the order in b, pa reverses it again -> order is kept.)
+
+Why line 7 says "while i < n" and not "while a is not NULL":
+ The numbers we ra go to the bottom of a and would come back to the
+ top again. We must look at each number exactly ONCE per round, so
+ we count n looks and stop.
+
+Why O(n log n):
+ Rounds = number of bits = log2(n).  100 numbers -> 7 rounds,
+ 500 numbers -> 9 rounds. Double the numbers = only 1 more round.
+ Each round = n looks (pb or ra) + the pa's.
+ n * log(n). It always costs the same, sorted or messy input -
+ that is why adaptive only uses it when disorder is HIGH.
+
+MEDIUM vs COMPLEX - when is which better?
+   n      medium (n*sqrt n)    complex (n*log n)
+   100    ~1000                ~1100         about the same
+   500    ~11000               ~6700         complex wins
+ For small n they are close. For big n complex wins clearly.
 
 
 ====================================================================

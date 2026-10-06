@@ -33,20 +33,21 @@ typedef struct s_flags {
   int complex;
 } t_flags;
 
-// Imena operacija umesto brojeva: OP_SA = 0, OP_SB = 1, ... OP_RRR = 10.
-// OP_COUNT je uvek poslednji i automatski je jednak broju operacija (11).
-
-typedef enum e_op
-{
-	OP_SA, OP_SB, OP_SS, OP_PA, OP_PB,
-	OP_RA, OP_RB, OP_RR, OP_RRA, OP_RRB, OP_RRR,
-	OP_COUNT
-}	t_op;
-
-// Brojac: ops[OP_PA] je koliko puta je pozvan pa, ops[OP_RA] koliko puta ra...
+// One counter per operation, for --bench.
+// Every operation adds 1 to its own counter each time it runs.
 typedef struct s_bench
 {
-	int	ops[OP_COUNT];
+	int	sa;
+	int	sb;
+	int	ss;
+	int	pa;
+	int	pb;
+	int	ra;
+	int	rb;
+	int	rr;
+	int	rra;
+	int	rrb;
+	int	rrr;
 }	t_bench;
 
 typedef struct s_ps {
@@ -74,18 +75,21 @@ int has_duplicate(t_node *stack, int num);
 int add_number(t_node **stack, char *arg);
 int parse_args(int argc, char **argv, t_node **stack, t_flags *flags);
 /* ---------- src/ops/ ---------- */
-void sa(t_node **a);
-void sb(t_node **a);
+void	sa(t_node **a, t_bench *bench);
+void	sb(t_node **b, t_bench *bench);
+void	ss(t_node **a, t_node **b, t_bench *bench);
 void	pa(t_node **a, t_node **b, t_bench *bench);
 void	pb(t_node **a, t_node **b, t_bench *bench);
 void	ra(t_node **a, t_bench *bench);
+void	rb(t_node **b, t_bench *bench);
+void	rr(t_node **a, t_node **b, t_bench *bench);
 void	rra(t_node **a, t_bench *bench);
-// TODO: sa, sb, rb, rr, rra, rrb, rrr, svaka sa t_bench *bench
+void	rrb(t_node **b, t_bench *bench);
+void	rrr(t_node **a, t_node **b, t_bench *bench);
 
 void	radix_sort(t_node **a, t_node **b, t_bench *bench);
 void	simple_sort(t_node **a, t_node **b, t_bench *bench);
-
-// TODO: pa, pb, ss, rra, rrb, rrr when you write them
+void	medium_sort(t_node **a, t_node **b, t_bench *bench);
 
 /* ---------- src/strats/ src/disorder/ src/bench/ ---------- */
 // TODO: add prototypes as you write these files
@@ -97,7 +101,6 @@ double disorder_m(t_node *a);
 
 /* ---------- src/bench/ ---------- */
 void	bench_init(t_bench *bench);
-int		bench_total(t_bench *bench);
 void	bench_print(t_bench *bench, double disorder, char *strategy);
 
 

@@ -30,18 +30,20 @@ void	ra(t_node **a, t_bench *bench)
 {
 	rotate(a);
 	write(1, "ra\n", 3);
-	bench->ops[OP_RA]++;        // NOVO
+	bench->ra++;
 }
 
-void	rb(t_node **b)
+void	rb(t_node **b, t_bench *bench)
 {
 	rotate(b);
 	write(1, "rb\n", 3);
+	bench->rb++;
 }
 
-void	rr(t_node **a, t_node **b)
+void	rr(t_node **a, t_node **b, t_bench *bench)
 {
 	rotate(a);
 	rotate(b);
 	write(1, "rr\n", 3);
+	bench->rr++;
 }

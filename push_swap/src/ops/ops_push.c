@@ -28,14 +28,14 @@ void	pa(t_node **a, t_node **b, t_bench *bench)
 {
 	push(b, a);
 	write(1, "pa\n", 3);
-	bench->ops[OP_PA]++;        // NOVO: zabelezi da je pa izvrsen
+	bench->pa++;
 }
 
 void	pb(t_node **a, t_node **b, t_bench *bench)
 {
 	push(a, b);
 	write(1, "pb\n", 3);
-	bench->ops[OP_PB]++;        // NOVO
+	bench->pb++;
 }
 
 /* OLD PA i PB

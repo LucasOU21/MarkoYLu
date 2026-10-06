@@ -35,18 +35,20 @@ void	rra(t_node **a, t_bench *bench)
 {
 	rrotate(a);
 	write(1, "rra\n", 4);
-	bench->ops[OP_RRA]++;
+	bench->rra++;
 }
 
-void	rrb(t_node **b)
+void	rrb(t_node **b, t_bench *bench)
 {
 	rrotate(b);
 	write(1, "rrb\n", 4);
+	bench->rrb++;
 }
 
-void	rrr(t_node **a, t_node **b)
+void	rrr(t_node **a, t_node **b, t_bench *bench)
 {
 	rrotate(a);
 	rrotate(b);
 	write(1, "rrr\n", 4);
+	bench->rrr++;
 }

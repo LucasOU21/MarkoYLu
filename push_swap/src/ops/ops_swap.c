@@ -24,21 +24,24 @@ static void	swap(t_node **s)
 	(*s)->next = tmp;         // novi vrh (bivši drugi) sad pokazuje na bivši prvi
 }
 
-void	sa(t_node **a)
+void	sa(t_node **a, t_bench *bench)
 {
 	swap(a);
 	write(1, "sa\n", 3);
+	bench->sa++;
 }
 
-void	sb(t_node **b)
+void	sb(t_node **b, t_bench *bench)
 {
 	swap(b);
 	write(1, "sb\n", 3);
+	bench->sb++;
 }
 
-void	ss(t_node **a, t_node **b)
+void	ss(t_node **a, t_node **b, t_bench *bench)
 {
 	swap(a);
 	swap(b);
 	write(1, "ss\n", 3);
+	bench->ss++;
 }
