@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ops_swap.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:24 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 17:39:04 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/09 19:09:17 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ static void	swap(t_node **s)
 {
 	t_node	*tmp;
 
-	if (!*s || !(*s)->next)   // ako stack ima 0 ili 1 element, nema šta da se menja
+	if (!*s || !(*s)->next)
 		return ;
-	tmp = *s;                 // tmp čuva prvi element
-	*s = (*s)->next;          // vrh stack-a postaje DRUGI element
-	tmp->next = (*s)->next;   // stari prvi element sad pokazuje na TREĆI element
-	(*s)->next = tmp;         // novi vrh (bivši drugi) sad pokazuje na bivši prvi
+	tmp = *s;
+	*s = (*s)->next;
+	tmp->next = (*s)->next;
+	(*s)->next = tmp;
 }
 
 void	sa(t_node **a, t_bench *bench)

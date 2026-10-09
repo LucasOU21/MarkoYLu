@@ -1,26 +1,46 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   stack_new.c                                        :+:      :+:    :+:   */
+/*   pase_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/09/25 17:52:33 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/09 19:08:27 by luolivei         ###   ########.fr       */
+/*   Created: 2026/10/09 18:19:25 by luolivei          #+#    #+#             */
+/*   Updated: 2026/10/09 18:19:33 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_node	*ft_node_new(int value)
+int	error_exit(t_node **stack)
 {
+	if (stack)
+		ft_nodeclear(stack);
+	write(2, "Error\n", 6);
+	return (0);
+}
+
+int	has_duplicate(t_node *stack, int num)
+{
+	while (stack)
+	{
+		if (stack->value == num)
+			return (1);
+		stack = stack->next;
+	}
+	return (0);
+}
+
+int	add_number(t_node **stack, char *arg)
+{
+	int		num;
 	t_node	*new_node;
 
-	new_node = (t_node *)malloc(sizeof(t_node));
+	if (!ps_atoi(arg, &num) || has_duplicate(*stack, num))
+		return (0);
+	new_node = ft_node_new(num);
 	if (!new_node)
-		return (NULL);
-	new_node->value = value;
-	new_node->index = 0;
-	new_node->next = NULL;
-	return (new_node);
+		return (0);
+	ft_nodeadd_back(stack, new_node);
+	return (1);
 }

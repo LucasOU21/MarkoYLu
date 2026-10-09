@@ -3,62 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/05 17:22:36 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/09 19:25:18 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "libft/libft.h"
-# include "push_swap.h"
-
-#include <stdio.h>
-#include <limits.h>
-#include <stdlib.h>
-
-
-// TODO: the path to follow, one step at a time:
-//   1. stack_a = parsing_args(argc, argv);   (src/parsing/)  <- you are here
-//   2. if stack_a is already sorted -> free and return (print nothing)
-//   3. measure disorder                       (src/disorder/)
-//   4. pick + run a strategy                  (src/strats/)
-//   5. if --bench: print op count to stderr   (src/bench/)
-//   6. ft_nodeclear(&stack_a); ft_nodeclear(&stack_b);
-//
-// FOR NOW main() is a TEST of step 1 (parsing). Try:
-//   make && ./push_swap 5 -3 0 12abc 2147483648 --bench
-// Replace it with the real steps above once parsing works.
-
-/*
-int	main(int argc, char **argv)
-{
-	t_node	*stack_a;
-	t_flags	flags;
-	double	disorder;
-
-	if (argc < 2)
-		return (0);
-	printf("====== Checking ATOI ======\n");
-	if (!parse_args(argc, argv, &stack_a, &flags))
-		return (1);
-	disorder = disorder_m(stack_a);   // measured BEFORE any operation
-	printf("disorder: %.2f%%\n", disorder * 100);
-	assign_index(stack_a);     // NOVO: bez ovoga svi indexi ostaju 0
-printf("size=%d sorted=%d\n", stack_size(stack_a), is_sorted(stack_a));
-	printf("bench: %d simple: %d medium: %d complex: %d\n",
-		flags.bench, flags.simple, flags.medium, flags.complex);
-	print_stack(stack_a, "A");
-	ft_nodeclear(&stack_a);
-		
-
-	print_stack(stack_a, "A");
-
-	
-	return (0);
-}*/
-
 #include "push_swap.h"
+
+static char	*get_strategy(t_flags *flags, double disorder)
+{
+	if (flags->simple)
+		return ("Simple / O(n^2)");
+	if (flags->medium)
+		return ("Medium / O(n sqrt(n))");
+	if (flags->complex)
+		return ("Complex / O(n log n)");
+	if (disorder < 0.2)
+		return ("Adaptive / O(n)");
+	if (disorder < 0.5)
+		return ("Adaptive / O(n sqrt(n))");
+	return ("Adaptive / O(n log n)");
+}
+
+static void	run_sort(t_node **a, t_node **b, t_flags *flags, t_bench *bench)
+{
+	if (is_sorted(*a))
+		return ;
+	if (flags->simple)
+		simple_sort(a, b, bench);
+	else if (flags->medium)
+		medium_sort(a, b, bench);
+	else if (flags->complex)
+		k_sort(a, b, bench);
+	else
+		adaptive_sort(a, b, bench);
+}
 
 int	main(int argc, char **argv)
 {
@@ -67,7 +48,6 @@ int	main(int argc, char **argv)
 	t_flags	flags;
 	t_bench	bench;
 	double	disorder;
-	char	*strategy;
 
 	if (argc < 2)
 		return (0);
@@ -77,27 +57,9 @@ int	main(int argc, char **argv)
 	bench_init(&bench);
 	assign_index(a);
 	disorder = disorder_m(a);
-	dprintf(2, "====== DEBUG ======\n");
-	dprintf(2, "disorder: %.2f%%\n", disorder * 100);
-	dprintf(2, "size=%d sorted=%d\n", stack_size(a), is_sorted(a));
-	dprintf(2, "flags: bench=%d simple=%d medium=%d complex=%d\n",
-		flags.bench, flags.simple, flags.medium, flags.complex);
-	print_stack(a, "A (before)");
-	strategy = "Complex / O(n log n)";
-	if (flags.simple)
-		strategy = "Simple / O(n^2)";
-	if (flags.medium)
-		strategy = "Medium / O(n sqrt(n))";
-	if (!is_sorted(a) && flags.simple)
-		simple_sort(&a, &b, &bench);
-	else if (!is_sorted(a) && flags.medium)
-		medium_sort(&a, &b, &bench);
-	else if (!is_sorted(a))
-		radix_sort(&a, &b, &bench);
-	print_stack(a, "A (after)");
-	print_stack(b, "B (after)");
+	run_sort(&a, &b, &flags, &bench);
 	if (flags.bench)
-		bench_print(&bench, disorder, strategy);
+		bench_print(&bench, disorder, get_strategy(&flags, disorder));
 	ft_nodeclear(&a);
 	ft_nodeclear(&b);
 	return (0);
