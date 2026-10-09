@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marko <emarkomitrovic@gmail.com>           +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 19:53:27 by marko             #+#    #+#             */
-/*   Updated: 2026/08/21 19:54:31 by marko            ###   ########.fr       */
+/*   Created: 2026/09/24 10:54:05 by mmitrovi          #+#    #+#             */
+/*   Updated: 2026/09/24 16:58:11 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 
 	ptrd = (unsigned char *)dest;
 	ptrs = (unsigned char *)src;
-	if (dest == NULL || src == NULL)
+	if (dest == NULL && src == NULL)
 		return (NULL);
 	i = 0;
 	while (i < n)

@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marko <emarkomitrovic@gmail.com>           +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 20:08:53 by marko             #+#    #+#             */
-/*   Updated: 2026/08/21 20:09:49 by marko            ###   ########.fr       */
+/*   Created: 2026/09/24 10:55:07 by mmitrovi          #+#    #+#             */
+/*   Updated: 2026/09/24 13:26:00 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-int	ft_strlen(const char *c)
-{
-	int	i;
-
-	i = 0;
-	while (c[i] != '\0')
-		i++;
-	return (i);
-}
 
 char	*ft_strdup(const char *s)
 {

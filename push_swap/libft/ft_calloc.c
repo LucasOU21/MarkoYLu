@@ -3,29 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marko <emarkomitrovic@gmail.com>           +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 18:39:31 by marko             #+#    #+#             */
-/*   Updated: 2026/08/21 18:43:01 by marko            ###   ########.fr       */
+/*   Created: 2026/09/24 10:51:59 by mmitrovi          #+#    #+#             */
+/*   Updated: 2026/09/24 14:05:28 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-void	*ft_memset(void *b, int c, size_t len)
-{
-	size_t			i;
-	unsigned char	*ptr;
-
-	i = 0;
-	ptr = (unsigned char *) b;
-	while (i < len)
-	{
-		ptr[i] = (unsigned char) c;
-		i++;
-	}
-	return (b);
-}
 
 void	*ft_calloc(size_t nmemb, size_t size)
 {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marko <emarkomitrovic@gmail.com>           +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 18:49:01 by marko             #+#    #+#             */
-/*   Updated: 2026/08/21 18:52:01 by marko            ###   ########.fr       */
+/*   Created: 2026/09/24 10:52:46 by mmitrovi          #+#    #+#             */
+/*   Updated: 2026/09/24 10:52:47 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,7 @@ char	*ft_itoa(int n)
 	len = get_len(num);
 	str = malloc ((len + 1) * sizeof(char));
 	if (str == NULL)
-	{
 		return (NULL);
-	}
 	str[len] = '\0';
 	if (num == 0)
 		str[0] = '0';
@@ -56,7 +54,6 @@ char	*ft_itoa(int n)
 	}
 	return (str);
 }
-
 /*
 
 int main()

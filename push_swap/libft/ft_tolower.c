@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_tolower.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marko <emarkomitrovic@gmail.com>           +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 20:25:26 by marko             #+#    #+#             */
-/*   Updated: 2026/08/21 20:25:52 by marko            ###   ########.fr       */
+/*   Created: 2026/09/24 10:56:33 by mmitrovi          #+#    #+#             */
+/*   Updated: 2026/09/24 12:01:46 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,4 @@ int main(){
 	char result = ft_tolower(c);
 	printf("this is small %c after function %c\n", c, result);
 }
-	*/
+*/

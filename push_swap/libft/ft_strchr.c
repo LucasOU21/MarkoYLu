@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marko <emarkomitrovic@gmail.com>           +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 20:07:58 by marko             #+#    #+#             */
-/*   Updated: 2026/08/21 20:08:41 by marko            ###   ########.fr       */
+/*   Created: 2026/09/24 10:54:59 by mmitrovi          #+#    #+#             */
+/*   Updated: 2026/09/24 14:19:11 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_strchr(const char *s, int c)
 	i = 0;
 	while (s[i] != '\0')
 	{
-		if (s[i] == c)
+		if (s[i] == (char)c)
 			return ((char *)&s[i]);
 		i++;
 	}
@@ -28,6 +28,22 @@ char	*ft_strchr(const char *s, int c)
 	return (NULL);
 }
 
+/*
+char	*ft_strchr(const char *s, int c)
+{
+	char	ch;
+
+	ch = (char)c;
+	while (*s)
+	{
+		if (*s == ch)
+			return ((char *)s);
+		s++;
+	}
+	if (*s == ch)
+		return ((char *)s);
+	return (NULL);
+}*/
 /* 
 int main(){
 	char c[] = "Markovic";

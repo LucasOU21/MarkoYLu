@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstadd_back.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marko <emarkomitrovic@gmail.com>           +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 18:52:27 by marko             #+#    #+#             */
-/*   Updated: 2026/08/21 18:54:02 by marko            ###   ########.fr       */
+/*   Created: 2026/09/24 10:52:52 by mmitrovi          #+#    #+#             */
+/*   Updated: 2026/09/24 10:52:53 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

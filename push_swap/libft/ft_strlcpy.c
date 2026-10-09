@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2026/08/21 20:15:15 by marko             #+#    #+#             */
-/*   Updated: 2026/09/30 15:28:32 by mmitrovi         ###   ########.fr       */
+/*   Created: 2026/09/24 10:55:34 by mmitrovi          #+#    #+#             */
+/*   Updated: 2026/09/24 10:55:35 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int main (){
 	printf("This is after the strlcpy 3: num is: %ld %s from %s\n",
 	ft_strlcpy(name2, name, 5), name2, name);
 	
+	
+	
 	//ft_strlcpy(name2, name, 5);
 	//printf("This is after the strlcpy 5: %s\n from %s\n", name, name2);
 	//ft_strlcpy(name2, name, 0);
@@ -51,5 +53,8 @@ int main (){
 	
 
 	return(0);
+
+
+
 }
 	*/
