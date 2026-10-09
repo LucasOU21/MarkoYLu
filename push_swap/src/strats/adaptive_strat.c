@@ -6,9 +6,38 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:07 by luolivei          #+#    #+#             */
-/*   Updated: 2026/09/29 18:07:47 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/09 16:58:08 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "push_swap.h"
+
+
+void adaptive_sort(t_node **a, t_node **b, t_bench *bench)
+{
+    double disorder;
+
+    // Prvo izračunamo nered
+    disorder = disorder_m(*a);
+
+    // Biramo algoritam na osnovu uslova zadatka
+    if (disorder < 0.2)
+    {
+        // Low disorder: O(n)
+        simple_sort(a, b, bench);
+    }
+    else if (disorder < 0.5)
+    {
+        // Medium disorder: O(n*sqrt(n)) -> Naš Chunk Sort
+        medium_strat(a, b, bench);
+    }
+    else
+    {
+        // High disorder: O(n log n) -> Radix Sort ili Quick/Merge Sort za Push_swap
+        radix_sort(a, b, bench);
+    }
+}
+
 
 /*Custom adaptive algorithm (learner’s design): Design an adaptive strategy
 that selects different internal methods depending on the measured disorder. You
