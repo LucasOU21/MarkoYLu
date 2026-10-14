@@ -6,7 +6,7 @@
 /*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/09 19:05:03 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/10/14 18:02:49 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <unistd.h>
+
 
 typedef struct s_node
 {
@@ -34,8 +35,6 @@ typedef struct s_flags
 	int	adaptive;
 }	t_flags;
 
-// One counter per operation, for --bench.
-// Every operation adds 1 to its own counter each time it runs.
 typedef struct s_bench
 {
 	int	sa;
