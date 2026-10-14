@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:20 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/14 18:02:49 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/10/14 21:00:31 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,5 +92,10 @@ void	bring_to_top(t_node **a, int pos, int size, t_bench *bench);
 int		int_sqrt(int n);
 int		max_position(t_node *b);
 void	max_to_top(t_node **b, t_bench *bench);
+void sort_two(t_node **a, t_bench *bench);
+void sort_three(t_node **a, t_bench *bench);
+void sort_small(t_node **a, t_node **b, t_bench *bench);
+int get_min_position(t_node *a);
+void push_smallest_to_b(t_node **a, t_node **b, t_bench *bench);
 
 #endif

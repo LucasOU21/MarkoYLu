@@ -21,6 +21,7 @@ src/strats/medium_strat.c \
 src/strats/complex_strat.c \
 src/strats/adaptive_strat.c \
 src/strats/strat_utils.c \
+src/strats/sort_small.c \
 src/ops/ops_swap.c \
 src/ops/ops_push.c \
 src/ops/ops_rotate.c \
