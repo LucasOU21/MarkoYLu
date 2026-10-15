@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   parse_args.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:03 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/09 18:28:14 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/10/15 19:49:45 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
+/*
 static int	check_flag(char *arg, char *name, int *seen)
 {
 	if (ft_strncmp(arg, name, ft_strlen(name) + 1) != 0)
@@ -20,22 +20,51 @@ static int	check_flag(char *arg, char *name, int *seen)
 		return (-1);
 	*seen = 1;
 	return (1);
+}*/
+
+static int is_strategy_set(t_flags *f)
+{
+    return (f->simple || f->medium || f->complex || f->adaptive);
 }
 
-static int	parse_flag(char *arg, t_flags *f)
+static int parse_flag(char *arg, t_flags *f)
 {
-	int	r;
-
-	r = check_flag(arg, "--bench", &f->bench);
-	if (r == 0)
-		r = check_flag(arg, "--simple", &f->simple);
-	if (r == 0)
-		r = check_flag(arg, "--medium", &f->medium);
-	if (r == 0)
-		r = check_flag(arg, "--complex", &f->complex);
-	if (r == 0)
-		r = check_flag(arg, "--adaptive", &f->adaptive);
-	return (r);
+    if (ft_strncmp(arg, "--bench", 7) == 0)
+    {
+        if (f->bench)
+            return (-1);
+        f->bench = 1;
+        return (1);
+    }
+    if (ft_strncmp(arg, "--simple", 9) == 0)
+    {
+        if (is_strategy_set(f))
+            return (-1);
+        f->simple = 1;
+        return (1);
+    }
+    if (ft_strncmp(arg, "--medium", 9) == 0)
+    {
+        if (is_strategy_set(f))
+            return (-1);
+        f->medium = 1;
+        return (1);
+    }
+    if (ft_strncmp(arg, "--complex", 9) == 0)
+    {
+        if (is_strategy_set(f))
+            return (-1);
+        f->complex = 1;
+        return (1);
+    }
+    if (ft_strncmp(arg, "--adaptive", 11) == 0)
+    {
+        if (is_strategy_set(f))
+            return (-1);
+        f->adaptive = 1;
+        return (1);
+    }
+    return (0);
 }
 
 int	parse_args(int argc, char **argv, t_node **stack, t_flags *flags)

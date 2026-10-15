@@ -6,7 +6,7 @@
 /*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/14 21:07:01 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/15 19:58:50 by mmitrovi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@ static void	run_sort(t_node **a, t_node **b, t_flags *flags, t_bench *bench)
 {
 	int size;
 
+	if(is_sorted(*a))
+		return ;
 	size = stack_size(*a);
 if (flags && flags->simple)
     {
@@ -47,8 +49,12 @@ if (flags && flags->simple)
         k_sort(a, b, bench);
         return ;
     }
+	else if (flags && flags->adaptive)
+	{
+		adaptive_sort(a, b, bench);
+		return ;
+	}
 
-    // 3. Ako nema posebnih flagova, ide automatska logika po veličini:
     if (size == 2)
         sort_two(a, bench);
     else if (size == 3)
@@ -56,7 +62,7 @@ if (flags && flags->simple)
     else if (size == 4 || size == 5)
         sort_small(a, b, bench);
     else
-        adaptive_sort(a, b, bench); // ili k_sort za 100/500}
+        adaptive_sort(a, b, bench);
 }
 int	main(int argc, char **argv)
 {
