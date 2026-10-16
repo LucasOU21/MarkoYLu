@@ -44,3 +44,36 @@ int	add_number(t_node **stack, char *arg)
 	ft_nodeadd_back(stack, new_node);
 	return (1);
 }
+
+static void	free_split(char **tab)
+{
+	int	i;
+
+	i = 0;
+	while (tab[i])
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
+
+int	add_numbers(t_node **stack, char *arg)
+{
+	char	**tab;
+	int		i;
+
+	tab = ft_split(arg, ' ');
+	if (!tab)
+		return (0);
+	i = 0;
+	while (tab[i] && add_number(stack, tab[i]))
+		i++;
+	if (i == 0 || tab[i])
+	{
+		free_split(tab);
+		return (0);
+	}
+	free_split(tab);
+	return (1);
+}

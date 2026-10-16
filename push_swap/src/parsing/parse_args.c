@@ -80,7 +80,7 @@ int	parse_args(int argc, char **argv, t_node **stack, t_flags *flags)
 		r = parse_flag(argv[i], flags);
 		if (r < 0)
 			return (error_exit(stack));
-		if (r == 0 && !add_number(stack, argv[i]))
+		if (r == 0 && !add_numbers(stack, argv[i]))
 			return (error_exit(stack));
 		i++;
 	}

@@ -69,6 +69,7 @@ int		ps_atoi(const char *s, int *out);
 int		error_exit(t_node **stack);
 int		has_duplicate(t_node *stack, int num);
 int		add_number(t_node **stack, char *arg);
+int		add_numbers(t_node **stack, char *arg);
 int		parse_args(int argc, char **argv, t_node **stack, t_flags *flags);
 void	sa(t_node **a, t_bench *bench);
 void	sb(t_node **b, t_bench *bench);
