@@ -35,7 +35,9 @@ Run it with unique integers:
 ./push_swap 4 67 3 87 23
 ```
 
-Optional flags: `--simple`, `--medium`, `--complex` force a strategy, `--adaptive` is the default, and `--bench` prints statistics.
+Optional flags:
+- `--simple`, `--medium`, `--complex`, `--adaptive` select a strategy (`--adaptive` is the default). Only **one** of these may be given; combining two (e.g. `--simple --medium`) prints `Error`.
+- `--bench` prints statistics to stderr. It can be combined with any single strategy flag.
 
 ## Algorithms
 
