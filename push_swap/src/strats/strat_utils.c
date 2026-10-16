@@ -6,7 +6,7 @@
 /*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/09 18:42:42 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/14 18:39:26 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/10/16 18:11:00 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	max_position(t_node *b)
 	}
 	return (max_pos);
 }
-
 
 void	max_to_top(t_node **b, t_bench *bench)
 {

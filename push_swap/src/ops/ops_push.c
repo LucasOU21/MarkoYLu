@@ -6,7 +6,7 @@
 /*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:51:22 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/09 19:11:05 by luolivei         ###   ########.fr       */
+/*   Updated: 2026/10/16 19:35:42 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void	push(t_node **src, t_node **dst)
 	tmp->next = *dst;
 	*dst = tmp;
 }
-
 
 void	pa(t_node **a, t_node **b, t_bench *bench)
 {

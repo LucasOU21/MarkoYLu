@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ps_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/25 17:44:03 by luolivei          #+#    #+#             */
-/*   Updated: 2026/10/03 18:41:45 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/16 18:08:12 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

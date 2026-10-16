@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mmitrovi <mmitrovi@student.42madrid.com    +#+  +:+       +#+        */
+/*   By: luolivei <luolivei@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/08/21 20:38:12 by marko             #+#    #+#             */
-/*   Updated: 2026/10/15 19:58:50 by mmitrovi         ###   ########.fr       */
+/*   Updated: 2026/10/16 17:46:58 by luolivei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,38 +29,39 @@ static char	*get_strategy(t_flags *flags, double disorder, int size)
 	return ("Adaptive / O(n sqrt(n))");
 }
 
+static int	run_flag_sort(t_node **a, t_node **b, t_flags *flags,
+		t_bench *bench)
+{
+	if (flags->simple)
+		simple_sort(a, b, bench);
+	else if (flags->medium)
+		medium_sort(a, b, bench);
+	else if (flags->complex)
+		k_sort(a, b, bench);
+	else
+		return (0);
+	return (1);
+}
+
 static void	run_sort(t_node **a, t_node **b, t_flags *flags, t_bench *bench)
 {
-	int size;
+	int	size;
 
-	if(is_sorted(*a))
+	if (is_sorted(*a))
+		return ;
+	if (run_flag_sort(a, b, flags, bench))
 		return ;
 	size = stack_size(*a);
-if (flags && flags->simple)
-    {
-        simple_sort(a, b, bench);
-        return ;
-    }
-    else if (flags && flags->medium)
-    {
-        medium_sort(a, b, bench);
-        return ;
-    }
-    else if (flags && flags->complex)
-    {
-        k_sort(a, b, bench);
-        return ;
-    }
-
-    if (size == 2)
-        sort_two(a, bench);
-    else if (size == 3)
-        sort_three(a, bench);
-    else if (size == 4 || size == 5)
-        sort_small(a, b, bench);
-    else
-        adaptive_sort(a, b, bench);
+	if (size == 2)
+		sort_two(a, bench);
+	else if (size == 3)
+		sort_three(a, bench);
+	else if (size == 4 || size == 5)
+		sort_small(a, b, bench);
+	else
+		adaptive_sort(a, b, bench);
 }
+
 int	main(int argc, char **argv)
 {
 	t_node	*a;
@@ -79,8 +80,8 @@ int	main(int argc, char **argv)
 	disorder = disorder_m(a);
 	run_sort(&a, &b, &flags, &bench);
 	if (flags.bench)
-		bench_print(&bench, disorder,
-			get_strategy(&flags, disorder, stack_size(a)));
+		bench_print(&bench, disorder, get_strategy(&flags, disorder,
+				stack_size(a)));
 	ft_nodeclear(&a);
 	ft_nodeclear(&b);
 	return (0);
