@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-static char	*get_strategy(t_flags *flags, double disorder)
+static char	*get_strategy(t_flags *flags, double disorder, int size)
 {
 	if (flags->simple)
 		return ("Simple / O(n^2)");
@@ -20,11 +20,13 @@ static char	*get_strategy(t_flags *flags, double disorder)
 		return ("Medium / O(n sqrt(n))");
 	if (flags->complex)
 		return ("Complex / O(n log n)");
+	if (size >= 2 && size <= 5)
+		return ("Adaptive / small sort (n <= 5)");
+	if (size > 100 || disorder >= 0.5)
+		return ("Adaptive / O(n log n)");
 	if (disorder < 0.2)
 		return ("Adaptive / O(n)");
-	if (disorder < 0.5)
-		return ("Adaptive / O(n sqrt(n))");
-	return ("Adaptive / O(n log n)");
+	return ("Adaptive / O(n sqrt(n))");
 }
 
 static void	run_sort(t_node **a, t_node **b, t_flags *flags, t_bench *bench)
@@ -49,11 +51,6 @@ if (flags && flags->simple)
         k_sort(a, b, bench);
         return ;
     }
-	else if (flags && flags->adaptive)
-	{
-		adaptive_sort(a, b, bench);
-		return ;
-	}
 
     if (size == 2)
         sort_two(a, bench);
@@ -82,7 +79,8 @@ int	main(int argc, char **argv)
 	disorder = disorder_m(a);
 	run_sort(&a, &b, &flags, &bench);
 	if (flags.bench)
-		bench_print(&bench, disorder, get_strategy(&flags, disorder));
+		bench_print(&bench, disorder,
+			get_strategy(&flags, disorder, stack_size(a)));
 	ft_nodeclear(&a);
 	ft_nodeclear(&b);
 	return (0);

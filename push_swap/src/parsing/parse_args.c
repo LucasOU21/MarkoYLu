@@ -29,7 +29,7 @@ static int is_strategy_set(t_flags *f)
 
 static int parse_flag(char *arg, t_flags *f)
 {
-    if (ft_strncmp(arg, "--bench", 7) == 0)
+    if (ft_strncmp(arg, "--bench", 8) == 0)
     {
         if (f->bench)
             return (-1);
@@ -50,7 +50,7 @@ static int parse_flag(char *arg, t_flags *f)
         f->medium = 1;
         return (1);
     }
-    if (ft_strncmp(arg, "--complex", 9) == 0)
+    if (ft_strncmp(arg, "--complex", 10) == 0)
     {
         if (is_strategy_set(f))
             return (-1);
